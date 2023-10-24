@@ -1,9 +1,10 @@
 ---
-title: "Stawberries: exploratory data analysis"
+title: "Stawberries EDA: Final draft"
 author: MA615
-date: 2023 Oct 11
+date: 2023 Oct 23
 format: html
 engine: knitr
+Output-dir: 615-Strawberry-EDA/
 ---
 
 # Assignment 
@@ -97,7 +98,7 @@ library(stringr)
 
 strawberry <- read_csv("strawberry.csv", col_names = TRUE)
 
-# glimpse(strawberry)
+glimpse(strawberry)
 ```
 
 
@@ -140,7 +141,7 @@ strawberry <- strawberry |> select(!all_of(str))
 ## applying the function a second time 
 ## tests the function when there aren't any 
 ## one-value columns
-#####  drop_one_value_col(strawberry)
+drop_one_value_col(strawberry)
 
 ```
 
@@ -150,7 +151,7 @@ strawberry <- strawberry |> select(!all_of(str))
 #| label: glimpse of strawberry data
 #| echo: false
 
-## glimpse(strawberry)
+# glimpse(strawberry)
 
 ```
 
@@ -247,7 +248,7 @@ strwb_survey <- strawberry |> filter(Program == "SURVEY")
 
 ## check that all of the rows are accounted for
 
-## nrow(strawberry) == (nrow(strwb_census) + nrow(strwb_survey))
+nrow(strawberry) == (nrow(strwb_census) + nrow(strwb_survey))
 
 ## Move marketing-related rows in strw_b_chem 
 ## to strw_b_sales
@@ -293,7 +294,7 @@ rm(calif_census, calif_survey, state_all)
 ## to "error" will produce helpful error messages.
 
   strwb_census <- strwb_census |>
-  separate_wider_delim(  cols = `Data Item`,
+  separate_wider_delim(  cols = 'Data Item',
                          delim = ",",
                          names = c("Fruit",
                                  "temp1",
@@ -522,7 +523,7 @@ strwb_census <- strwb_census |> relocate(`Process Market`, .before = Metric)
 
 strwb_census <- strwb_census |> rename(Totals = prop_acct)
 
-#drop_one_value_col(strwb_census)
+# drop_one_value_col(strwb_census)
 
 
 ```
@@ -957,6 +958,32 @@ strwb_survey_mkt <- strwb_survey_mkt |> select(all_of(mkt1))
 
 
 ```
+
+
+# EDA
+```{r}
+# EDA
+ggplot(strwb_census, aes(x = State, fill = crop_type)) +
+  geom_bar(position = position_dodge(width = 5)) +
+  labs(title = "Organic Status vs. States",
+       x = "States",
+       y = "Counts") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))  
+```
+Following Haviland work from the class after seperating the census program and survey program, the crop planted in organic way and the crop planted using chemicals are also devided at the same time. Up here is the histogram of the amount of strawberry sales that came from organic planting. There are states like Alaska which cannot implement organic farming for long period due to weather issue. But overall a lot of states have organic crops for sale.
+
+```{r}
+ggplot(strwb_survey_chem, aes(x = State, fill = temp23)) +
+  geom_bar(position = "stack") +
+  labs(title = "Chemical Usage by Region",
+       x = "Region",
+       y = "Count") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_brewer(palette = "Set3")
+```
+
+On the other aspect, lots of farming cannot avoid using chemicals to kill those things which would be harmful to the crops. The chemicals used includes fungicide, herbicide, insecticide, etc. According to the colored histogram above, California seems to be the states using the most chemicals. California is also the state with most organic crops too based on the previous plot. Overall the fungicide and insecticide are used for the most than the other chemicals. 
+
 
 <p style="page-break-before: always"></p>
 
