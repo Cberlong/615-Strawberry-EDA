@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.450">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="MA615">
+<meta name="dcterms.date" content="2023-10-23">
+
+<title>Stawberries EDA: Final draft</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="Strawberry EDA_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Strawberry EDA_files/libs/quarto-html/quarto.js"></script>
+<script src="Strawberry EDA_files/libs/quarto-html/popper.min.js"></script>
+<script src="Strawberry EDA_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Strawberry EDA_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Strawberry EDA_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Strawberry EDA_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Strawberry EDA_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Strawberry EDA_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Strawberry EDA_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Stawberries EDA: Final draft</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>MA615 </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 23, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="assignment" class="level1">
+<h1>Assignment</h1>
+<p>Using our class discussions and this document as a starting point, produce an EDA report. The report should describe the data itself so that readers understand the data sources used in the report and how you cleaned and organized the data for analysis.</p>
+<p>The sections below suggest how the report might be organized. The report should be succinct, communicating the information that you believe will be helpful to someone doing a fuller analysis of the data or using the data for model building. Implementation details should be included in commentary that is included in code.</p>
+<p>Sections of the document as it was originally presented in class have been commented so that you can see them in the code.</p>
+<hr>
+<hr>
+<section id="data-acquisition-and-assessment" class="level2">
+<h2 class="anchored" data-anchor-id="data-acquisition-and-assessment">Data acquisition and assessment</h2>
+<ul>
+<li>Data sources<br>
+</li>
+<li>Assumptions and motivations</li>
+</ul>
+</section>
+<section id="data-cleaning-and-organization" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning-and-organization">Data cleaning and organization</h2>
+<p>Outline the approach taked to clean and organize the data.</p>
+</section>
+<section id="references" class="level2">
+<h2 class="anchored" data-anchor-id="references">References</h2>
+<section id="material-about-strawberries" class="level3">
+<h3 class="anchored" data-anchor-id="material-about-strawberries">Material about strawberries</h3>
+<p><a href="https://med.news.am/eng/news/13621/who-says-strawberries-may-not-be-so-safe-for-you.html">WHO says strawberries may not be so safe for you–2017March16</a></p>
+<p><a href="https://www.ewg.org/foodnews/strawberries.php">Pesticides + poison gases = cheap, year-round strawberries 2019March20</a></p>
+<p><a href="https://www.cdc.gov/hepatitis/outbreaks/2022/hav-contaminated-food/index.htm">Multistate Outbreak of Hepatitis A Virus Infections Linked to Fresh Organic Strawberries-2022March5</a></p>
+<p><a href="https://issuu.com/mechlocal/docs/053123_mech_asf/s/25386339">Strawberry makes list of cancer-fighting foods-2023May31</a></p>
+</section>
+<section id="technical-references" class="level3">
+<h3 class="anchored" data-anchor-id="technical-references">Technical references</h3>
+<p>In their handbook <a href="https://cran.r-project.org/doc/contrib/de_Jonge+van_der_Loo-Introduction_to_data_cleaning_with_R.pdf">“An introduction to data cleaning with R” by Edwin de Jonge and Mark van der Loo</a>, de Jonge and van der Loo go into detail about specific data cleaning isssues and how to handle them in R.</p>
+<p><a href="https://www.researchgate.net/profile/Heiko-Mueller/publication/228929938_Problems_methods_and_challenges_in_comprehensive_data_cleansing/links/09e415101b58541e2c000000/Problems-methods-and-challenges-in-comprehensive-data-cleansing.pdf">“Problems, Methods, and Challenges in Comprehensive Data Cleansing” by Heiko Müller and Johann-Christoph Freytag</a> is a good companion to the de Jonge and van der Loo handbook, offering additional insights.</p>
+</section>
+</section>
+<section id="initial-questions" class="level2">
+<h2 class="anchored" data-anchor-id="initial-questions">Initial questions</h2>
+<ul>
+<li>Initial questions about strawberries, the data, and about the work you are undertaking. Write these before you begin working.</li>
+</ul>
+</section>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The data</h2>
+<p>Describe the source and original condition of the data: organization, problems with the data that needed to be addressed and so on. Cite data sources.</p>
+<p>The data set for this assignment has been selected from: <a href="https://quickstats.nass.usda.gov">USDA_NASS</a> <br> The data have been stored on NASS here: <a href="https://quickstats.nass.usda.gov/results/45FBC825-B104-38E2-9802-839F5F3C7036">USDA_NASS_strawb_2023SEP19</a></p>
+<p>Make relevant observations in the document and in your code about data. Add commentary to the code so that anthoer analysts could use or extend your code.</p>
+<p>Discusss missing data, inclding how you handled it. Be careful to point out where NA’s are being produced during processing and are not data missing in the original data.</p>
+<p>Where it is relevant, include information of how you have organized the data for analysis. It might, for example, be helpful to know that there is both agricultural census data and survey data. It might be helpful to discuss data that appears to be redundant between these two sources.</p>
+<p>Make sure you include details in your discussion and in your code about other data and information you used in your work. Cite sources and provide detail that would allow another analyst to reproduce your work.</p>
+<!-- Read the file -->
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 4,314
+Columns: 21
+$ Program            &lt;chr&gt; "CENSUS", "CENSUS", "CENSUS", "CENSUS", "CENSUS", "…
+$ Year               &lt;dbl&gt; 2021, 2021, 2021, 2021, 2021, 2021, 2021, 2021, 202…
+$ Period             &lt;chr&gt; "YEAR", "YEAR", "YEAR", "YEAR", "YEAR", "YEAR", "YE…
+$ `Week Ending`      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ `Geo Level`        &lt;chr&gt; "STATE", "STATE", "STATE", "STATE", "STATE", "STATE…
+$ State              &lt;chr&gt; "ALASKA", "ALASKA", "ALASKA", "ALASKA", "ALASKA", "…
+$ `State ANSI`       &lt;chr&gt; "02", "02", "02", "02", "02", "02", "02", "06", "06…
+$ `Ag District`      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ `Ag District Code` &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ County             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ `County ANSI`      &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ `Zip Code`         &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ Region             &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ watershed_code     &lt;chr&gt; "00000000", "00000000", "00000000", "00000000", "00…
+$ Watershed          &lt;lgl&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA,…
+$ Commodity          &lt;chr&gt; "STRAWBERRIES", "STRAWBERRIES", "STRAWBERRIES", "ST…
+$ `Data Item`        &lt;chr&gt; "STRAWBERRIES, ORGANIC - OPERATIONS WITH SALES", "S…
+$ Domain             &lt;chr&gt; "ORGANIC STATUS", "ORGANIC STATUS", "ORGANIC STATUS…
+$ `Domain Category`  &lt;chr&gt; "ORGANIC STATUS: (NOP USDA CERTIFIED)", "ORGANIC ST…
+$ Value              &lt;chr&gt; "2", "(D)", "(D)", "(D)", "2", "(D)", "(D)", "142",…
+$ `CV (%)`           &lt;chr&gt; "(H)", "(D)", "(D)", "(D)", "(H)", "(D)", "(D)", "1…</code></pre>
+</div>
+</div>
+<!-- Remove columns with a single value in all columns -->
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "No Columns to drop"</code></pre>
+</div>
+</div>
+<!-- Glimpse of strawberry data after dropping single-value columns. -->
+<!-- ## Examine the data. How is it organized? -->
+<!-- ### Is every line associated with a state? -->
+<!-- ### Which state has the most rows? -->
+<!-- The data is organized by state.   -->
+<!-- The state with the most rows is CALIFORNIA. -->
+<!-- ## Examine California data -->
+<!-- ### List the composite columns  -->
+<!-- Census: Data Item, Domain Category -->
+<!-- Survey: Data Item, Domain, Domain Category -->
+<!-- ## Separate CENSUS and SURVEY into two Data Frames -->
+<!-- In the strawberry data frame,  -->
+<!-- The CENSUS rows contains marketing, sales, and productiong data.  The SURVEY rows contain rows which may be redundant with the CENSUS rows and chemical application rows. -->
+<!-- After splitting CENSUS and SURVEY rows into two data frames,  -->
+<!-- finish organizing the CENSUS data first.  Then, organize the -->
+<!-- SURVEY data frame splitting the marketing, and production data from the chemical application data. -->
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<!-- # Complete with the census data frame -->
+<!-- ## Separate composite columns and clean the Value column -->
+<!-- Composite columns in the strwb_census: Data Item, Domain category -->
+<!-- Column separators in CENSUS: ",", "-", ":" -->
+<!-- ### Separate `Data Item` into columns by "," -->
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># echo: True</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## This will be done in stages --</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="do">####################################################</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">## split `Data Item` into "Fruit", "temp1","temp2","temp3"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="do">## then test the columns created for numer of distinct values</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="do">## split the columns until you have columns of </span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="do">## subjects, properties, values, and metrics (where metrics</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">## are the units defined for the values)</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="do">## In this case, the subject is State/Strawberries -- </span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="do">## strawberries grown reported by state.</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="do">## When using separate_wider_delim() when you don't know the </span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="do">## number of columns the function will return,</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="do">## use the "too_many" and "too_few" parameters to set up </span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="do">## the function.  Generally, setting both parameters</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="do">## to "error" will produce helpful error messages.</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>  strwb_census <span class="ot">&lt;-</span> strwb_census <span class="sc">|&gt;</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(  <span class="at">cols =</span> <span class="st">'Data Item'</span>,</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>                         <span class="at">delim =</span> <span class="st">","</span>,</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"Fruit"</span>,</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"temp1"</span>,</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"temp2"</span>,</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"temp3"</span>),</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a>                         <span class="at">too_many =</span> <span class="st">"error"</span>,</span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>                         <span class="at">too_few =</span> <span class="st">"align_start"</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="do">## Test the columns for the number of distinct values.</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="do">## for example:</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a> a <span class="ot">&lt;-</span> strwb_census <span class="sc">|&gt;</span> <span class="fu">distinct</span>(Fruit)</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="do">## The Fruit column only has one value: STRAWBERRIES the </span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="do">## subject under investigation.</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="do">## Remember - the value in single-value columns</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="do">## are often needed for Labels on tables and plots.</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="do">## Testing the temp1 column guides the next step.</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co"># a &lt;- strwb_census |&gt; distinct(temp1)</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="do">## The "temp1" column has 4 distinct values</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="do">##    " ORGANIC - OPERATIONS WITH SALES"</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="do">##    " ORGANIC - PRODUCTION"           </span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a><span class="do">##    " ORGANIC - SALES"                </span></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="do">##    " ORGANIC"  </span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="do">##  (Note the leading space in each string -- </span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="do">##       which is fixed below.)</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="do">##  You can see that this column needs to be split between</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="do">##  "organic" and the properties "OPERATIONS WITH SALES", </span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="do">##  "PRODUCTION" and "SALES",  </span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="do">##    using " - " as the column delimiter.</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="do">##  The column "prop_acct" contains the properties,</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="do">##   which are are accounting metrics related to</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="do">##   strawberry growing operations.</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="do">############################################</span></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="do">## split temp1 into crop_type, Prop_acct</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>strwb_census <span class="ot">&lt;-</span> strwb_census <span class="sc">|&gt;</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a>  <span class="fu">separate_wider_delim</span>(  <span class="at">cols =</span> temp1,</span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>                         <span class="at">delim =</span> <span class="st">" - "</span>,</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a>                         <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"crop_type"</span>,</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>                                 <span class="st">"prop_acct"</span>),</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a>                         <span class="at">too_many =</span> <span class="st">"error"</span>,</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>                         <span class="at">too_few =</span> <span class="st">"align_start"</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a>                       )</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="do">## Once again, test the columns to plan your next step.</span></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="co"># a &lt;- strwb_census |&gt; distinct(crop_type)</span></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="do">## Column "crop_type' has single value  "organic"</span></span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a><span class="co"># a &lt;- strwb_census |&gt; distinct(prop_acct)</span></span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="do">## The stringss in the "prop_acct" column are row labels</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="do">## for values reported in the "Values" column.  </span></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a><span class="do">##    "OPERATIONS WITH SALES"</span></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="do">##    "PRODUCTION"           </span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a><span class="do">##    "SALES"               </span></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="do">##    "NA"   </span></span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="do">## Note that the NA is in a row where the value </span></span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="do">## is labeled in another column.</span></span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="do">############################################</span></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="do">## trim the strings</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="do">## you can see which columns contain string values that need</span></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="do">## to have leading or trailing spaces that need to be trimmed.</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="co"># glimpse(strwb_census)</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>strwb_census<span class="sc">$</span>crop_type <span class="ot">&lt;-</span> <span class="fu">str_trim</span>(strwb_census<span class="sc">$</span>crop_type, <span class="at">side =</span> <span class="st">"both"</span>)</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>strwb_census<span class="sc">$</span>temp2 <span class="ot">&lt;-</span> <span class="fu">str_trim</span>(strwb_census<span class="sc">$</span>temp2, <span class="at">side =</span> <span class="st">"both"</span>)</span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>strwb_census<span class="sc">$</span>temp3 <span class="ot">&lt;-</span> <span class="fu">str_trim</span>(strwb_census<span class="sc">$</span>temp3, <span class="at">side =</span> <span class="st">"both"</span>)</span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="do">#############################################</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="do">## split temp2 into market_type, measure</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="do">## The temp2 column requires a different logic.</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a><span class="do">## start by looking at the unique entries in the temp2 column.</span></span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="co"># a &lt;- strwb_census |&gt; distinct(temp2)</span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a><span class="co"># temp2</span></span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="co"># 1  NA                                    </span></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 " MEASURED IN CWT"                     </span></span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 " MEASURED IN $"                       </span></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 " FRESH MARKET - OPERATIONS WITH SALES"</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 " FRESH MARKET - SALES"                </span></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 " PROCESSING - OPERATIONS WITH SALES"  </span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="co"># 7 " PROCESSING - SALES"   </span></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="do">## temp2 contains data for three separate columns</span></span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="do">##   All Strawberries  (is this a Total?)</span></span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a><span class="do">##   Fresh Market</span></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="do">##   Processing</span></span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a><span class="do">##</span></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a><span class="do">##  To understand these labels see </span></span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a><span class="do">##     "Strawberries: An Economic Assessment of the Feasibility</span></span>
+<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a><span class="do">##      of Providing Multiple-Peril Crop Insurance",</span></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a><span class="do">##        prepared by Economic Research Service, USDA</span></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="do">##             for the Federal Crop Insurance Corporation</span></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="do">##                  October 31, 1994</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!-- ## Create a "Fresh Market" column -->
+<!-- ## Create a "Process Market" column -->
+<!-- Remove NA's from prop_acct, temp2, and temp3 -->
+<!-- Combine temp2 with temp3 to create Metric column -->
+<!-- remove  -->
+<!-- relocate columns -->
+<!-- ## The Value column transformation -->
+<!-- NOTE -->
+<!-- These plots were in early versions of the classroom notes. -->
+<!-- In final versions of this document, they should be included in the EDA section. Note that the code will not run without editing. -->
+<!-- ## plots   -->
+</section>
+<section id="eda" class="level2">
+<h2 class="anchored" data-anchor-id="eda">EDA</h2>
+<p>Once the data has been cleaned and organized, you must conduct your own EDA. Be sure to include a discussion of your analysis of the chemical information, including citations for data and other information you have used. Visualizations should play a key role in your analysis. Plots should be labeled and captioned.</p>
+<!-- ## chemicals -->
+<!-- ### carcinogens from WHO list -->
+<!-- #### updated -->
+<!-- [list from WHO?](https://ggle.io/6Eys) -->
+<!-- Arsenic: A Group 1 carcinogen, or conclusive cause of cancer   -->
+<!-- Ethylene oxide: A Group 1 carcinogen   -->
+<!-- Lindane: A Group 1 carcinogen   -->
+<!-- 2,3,7,8-tetrachlorodibenzo-p-dioxin (TCDD): A Group 1 carcinogen   -->
+<!-- Diazinon: Classified as "probably carcinogenic"   -->
+<!-- Glyphosate: Classified as "probably carcinogenic"    -->
+<!-- Malathion: Classified as "probably carcinogenic"   -->
+<!-- #### -->
+<!-- Now produce two data frames using strwb_survey. -->
+<!-- One will have market data similar to strwb_census -->
+<!-- The second will have data about chemicals used by  -->
+<!-- strawberry growers. -->
+<!-- Use the survey market data to enrich the data you already have -->
+<!-- from the census.   -->
+<!-- Use the chemical data to explore the use of carcinogens to grown strawberries.  Use the World Health Organization's -->
+<!-- list of carcinogens.  These lists site specific chemicals.  -->
+<!-- For exampe: these chemicals are on WHO's list of known carcinogens: captafol, ethylene dibromide, glyphosate, malathion, diazinon and dichlorophenyltrichloroethane (DDT).   Note that the WHO lists are not specific to strawberries.  You must use available data resources to determine which are used in strawberry growing. -->
+<!-- ## Clean and organize strwb_survey -->
+<!-- ## Column analyses -->
+<!-- ### Period -->
+<!-- data item -->
+<!-- Domain -->
+<!-- Domain Category -->
+<!-- drop 1-value columns strawberry chems  -->
+<!-- mkt -->
+</section>
+</section>
+<section id="eda-1" class="level1">
+<h1>EDA</h1>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># EDA</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strwb_census, <span class="fu">aes</span>(<span class="at">x =</span> State, <span class="at">fill =</span> crop_type)) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">5</span>)) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Organic Status vs. States"</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"States"</span>,</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Counts"</span>) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>))  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Strawberry-EDA_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Following Haviland work from the class after seperating the census program and survey program, the crop planted in organic way and the crop planted using chemicals are also devided at the same time. Up here is the histogram of the amount of strawberry sales that came from organic planting. There are states like Alaska which cannot implement organic farming for long period due to weather issue. But overall a lot of states have organic crops for sale.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(strwb_survey_chem, <span class="fu">aes</span>(<span class="at">x =</span> State, <span class="at">fill =</span> temp23)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"stack"</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Chemical Usage by Region"</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Region"</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Count"</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">45</span>, <span class="at">hjust =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="Strawberry-EDA_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>On the other aspect, lots of farming cannot avoid using chemicals to kill those things which would be harmful to the crops. The chemicals used includes fungicide, herbicide, insecticide, etc. According to the colored histogram above, California seems to be the states using the most chemicals. California is also the state with most organic crops too based on the previous plot. Overall the fungicide and insecticide are used for the most than the other chemicals.</p>
+<p style="page-break-before: always">
+</p>
+<section id="these-references-have-been-left-in-the-document-to-help-while-you-are-writing.-cite-those-you-use-and-drop-the-rest-from-the-final-document." class="level3">
+<h3 class="anchored" data-anchor-id="these-references-have-been-left-in-the-document-to-help-while-you-are-writing.-cite-those-you-use-and-drop-the-rest-from-the-final-document.">These references have been left in the document to help while you are writing. Cite those you use and drop the rest from the final document.</h3>
+<p><a href="https://quickstats.nass.usda.gov/tutorials">NASS help</a></p>
+<p><a href="https://quickstats.nass.usda.gov/src/glossary.pdf">Quick Stats Glossary</a></p>
+<p><a href="https://quickstats.nass.usda.gov/param_define">Quick Stats Column Definitions</a></p>
+<p><a href="https://www.nass.usda.gov/Statistics_by_Subject/index.php?sector=CROPS">stats by subject</a></p>
+<p>for EPA number lookup <a href="https://archive.epa.gov/pesticides/chemicalsearch/chemical/foia/web/html/128810.html">epa numbers</a></p>
+<p><a href="https://ordspub.epa.gov/ords/pesticides/f?p=APPRIL_PUBLIC:2::::::">Active Pesticide Product Registration Informational Listing</a></p>
+<p>pc number input <a href="https://ordspub.epa.gov/ords/pesticides/f?p=chemicalsearch:1">pesticide chemical search</a></p>
+<p><a href="https://comptox.epa.gov/dashboard/">toxic chemical dashboard</a></p>
+<p><a href="https://cfpub.epa.gov/si/si_public_record_report.cfm?Lab=NCCT&amp;dirEntryId=209598">ACToR – Aggregated Computational Toxicology Resource</a></p>
+<p><a href="https://comptox.epa.gov/dashboard/chemical/details/DTXSID0020315">comptox dashboard</a></p>
+<p><a href="https://pubchem.ncbi.nlm.nih.gov/">pubChem</a></p>
+<p>The EPA PC (Pesticide Chemical) Code is a unique chemical code number assigned by the EPA to a particular pesticide active ingredient, inert ingredient or mixture of active ingredients.</p>
+</section>
+<section id="investigating-toxic-pesticides" class="level2">
+<h2 class="anchored" data-anchor-id="investigating-toxic-pesticides">Investigating toxic pesticides</h2>
+<p><a href="https://ordspub.epa.gov/ords/pesticides/f?p=chemicalsearch:1">start here with chem PC code</a></p>
+<p><a href="https://ordspub.epa.gov/ords/pesticides/f?p=113:1::::RP,17,1::">step 2</a> to get label (with warnings) for products using the chemical</p>
+<p><a href="https://www.ilo.org/dyn/icsc/showcard.home">International Chemical safety cards</a></p>
+<p><a href="https://ordspub.epa.gov/ords/pesticides/f?p=113:1::::RP,17,1::">Pesticide Product and Label System</a></p>
+<p><a href="https://ordspub.epa.gov/ords/pesticides/f?p=113:17::::::">Search by Chemical</a></p>
+<p><a href="https://comptox.epa.gov/dashboard/">CompTox Chemicals Dashboard</a></p>
+<p><a href="https://ordspub.epa.gov/ords/pesticides/f?p=APPRIL_PUBLIC:2::::::">Active Pesticide Product Registration Informational Listing</a></p>
+<p><a href="https://www.osha.gov/chemicaldata">OSHA chemical database</a></p>
+<p><a href="http://npic.orst.edu/ingred/">Pesticide Ingredients</a></p>
+<p><a href="http://npic.orst.edu/NPRO/">NPIC Product Research Online (NPRO)</a></p>
+<p><a href="http://npic.orst.edu/ingred/cheminfo.html">Databases for Chemical Information</a></p>
+<p><a href="http://npic.orst.edu/ingred/active.html">Pesticide Active Ingredients</a></p>
+<p><a href="https://www.epa.gov/tsca-inventory">TSCA Chemical Substance Inventory</a></p>
+<p><a href="https://ordspub.epa.gov/ords/pesticides/f?p=CHEMICALSEARCH:3::::1,3,31,7,12,25:P3_XCHEMICAL_ID:2478">glyphosate</a></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
